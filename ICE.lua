@@ -147,14 +147,14 @@ bot_id = sudos.token:match("(%d+)")
 token = sudos.token 
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
-io.popen("mkdir File_Bot") 
-io.popen("cd File_Bot && rm -rf commands.lua.1") 
-io.popen("cd File_Bot && rm -rf commands.lua.2") 
-io.popen("cd File_Bot && rm -rf commands.lua.3") 
-io.popen("cd File_Bot && wget https://raw.githubusercontent.com/ICELTEAM/Files_ICE/main/File_Bot/commands.lua") 
+io.popen("mkdir Files_ICE") 
+io.popen("cd Files_ICE && rm -rf commands.lua.1") 
+io.popen("cd Files_ICE && rm -rf commands.lua.2") 
+io.popen("cd Files_ICE && rm -rf commands.lua.3") 
+io.popen("cd Files_ICE && wget https://raw.githubusercontent.com/ICCETEAM/Files_ICE/main/Files_ICE/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
-for v in io.popen('ls File_Bot'):lines() do
+for v in io.popen('ls Files_ICE'):lines() do
 if v:match(".lua$") then
 i = i + 1
 t = t.."\27[39m"..i.."\27[36m".." - \27[10;32m"..v..",\27[m \n"
@@ -574,7 +574,7 @@ Send(chat,msg.id_,'\n- الرتبة : مشرف  '..'\n- والصلاحيات ه�
 end
 end
 end
-function GetFile_Bot(msg)
+function GetFiles_ICE(msg)
 local list = database:smembers(bot_id..'Chek:Groups') 
 local t = '{"BOT_ID": '..bot_id..',"GP_BOT":{'  
 for k,v in pairs(list) do   
@@ -681,7 +681,7 @@ download_to_file('https://api.telegram.org/file/bot'..token..'/'..Qw.result.file
 sendSticker(msg.chat_id_, msg.id_, 0, 1, nil, './'..rre)
 os.execute('rm -rf ./'..rre) 
 end
-function AddFile_Bot(msg,chat,ID_FILE,File_Name)
+function AddFiles_ICE(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
 if tonumber(File_Name:match('(%d+)')) ~= tonumber(bot_id) then 
 send(chat,msg.id_," ❒︙  ملف نسخه ليس لهاذا البوت")
@@ -797,9 +797,9 @@ end
 end,nil)   
 end  
 function plugin_Poyka(msg)
-for v in io.popen('ls File_Bot'):lines() do
+for v in io.popen('ls Files_ICE'):lines() do
 if v:match(".lua$") then
-plugin = dofile("File_Bot/"..v)
+plugin = dofile("Files_ICE/"..v)
 if plugin.Poyka and msg then
 pre_msg = plugin.Poyka(msg)
 end
@@ -1066,7 +1066,7 @@ end
 
 if text == 'تحديث السورس❒' and DevSoFi(msg) then 
 os.execute('rm -rf ICE.lua')
-os.execute('wget https://raw.githubusercontent.com/ICELTEAM/ICE/main/ICE.lua')
+os.execute('wget https://raw.githubusercontent.com/ICCETEAM/ICE/main/ICE.lua')
 send(msg.chat_id_, msg.id_,' ❒︙ تم تحديث السورس\n ❒︙ لديك اخر اصدار لسورس ايس\n ❒︙ الاصدار » { v 1.6 }')
 dofile('ICE.lua')  
 end
@@ -1208,7 +1208,7 @@ send(msg.chat_id_, msg.id_," ❒︙ ارسل لي التوجيه الان")
 return false
 end 
 if text == 'جلب نسخه الاحتياطيه ❒' and DevSoFi(msg) then 
-GetFile_Bot(msg)
+GetFiles_ICE(msg)
 end
 if text == "تنظيف المشتركين ❒" and DevSoFi(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
@@ -2363,7 +2363,7 @@ end
 return false
 end
 os.execute('rm -rf ICE.lua')
-os.execute('wget https://raw.githubusercontent.com/ICELTEAM/ICE/main/ICE.lua')
+os.execute('wget https://raw.githubusercontent.com/ICCETEAM/ICE/main/ICE.lua')
 send(msg.chat_id_, msg.id_,' ❒︙ تم تحديث السورس \n ❒︙ لديك اخر اصدار لسورس ايس\n ❒︙ الاصدار » { v 1.6 }')
 dofile('ICE.lua')  
 end
@@ -2707,7 +2707,7 @@ function by_reply(extra, result, success)
 if result.content_.document_ then 
 local ID_FILE = result.content_.document_.document_.persistent_id_ 
 local File_Name = result.content_.document_.file_name_
-AddFile_Bot(msg,msg.chat_id_,ID_FILE,File_Name)
+AddFiles_ICE(msg,msg.chat_id_,ID_FILE,File_Name)
 end   
 end
 tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
@@ -2723,7 +2723,7 @@ send(msg.chat_id_, msg.id_,' ❒︙ لا تستطيع استخدام البوت 
 end
 return false
 end
-GetFile_Bot(msg)
+GetFiles_ICE(msg)
 end
 if text == 'الاوامر المضافه' and Constructor(msg) then
 local list = database:smembers(bot_id..'List:Cmd:Group:New'..msg.chat_id_..'')
@@ -4035,7 +4035,7 @@ end
 if text == 'الملفات' and DevSoFi(msg) then
 t = ' ❒∫ ملفات سورس ايس ↓\n𓍹ⵧⵧⵧⵧⵧⵧ⊱•𝙄𝘾𝙀•⊰ⵧⵧⵧⵧⵧⵧ𓍻ٴ \n'
 i = 0
-for v in io.popen('ls File_Bot'):lines() do
+for v in io.popen('ls Files_ICE'):lines() do
 if v:match(".lua$") then
 i = i + 1
 t = t..i..'- الملف » {'..v..'}\n'
@@ -4045,7 +4045,7 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if DevSoFi(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/ICELTEAM/Files_ICE/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/ICCETEAM/Files_ICE/main/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -4054,7 +4054,7 @@ local TextS = "\n ❒∫ اهلا بك في متجر ملفات ايس\n ❒∫ 
 local TextE = "\n𓍹ⵧⵧⵧⵧⵧⵧ⊱•𝙄𝘾𝙀•⊰ⵧⵧⵧⵧⵧⵧ𓍻ٴ\n ❒∫ علامة تعني { ✓ } ملف مفعل\n ❒∫ علامة تعني { ✘ } ملف معطل\n ❒∫ قناة  ايس ↓\n".." ❒∫ [اضغط هنا لدخول](t.me/ICE53) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
-local Check_File_is_Found = io.open("File_Bot/"..name,"r")
+local Check_File_is_Found = io.open("Files_ICE/"..name,"r")
 if Check_File_is_Found then
 io.close(Check_File_is_Found)
 CeckFile = "(✓)"
@@ -4076,16 +4076,16 @@ end
 if text and text:match("^(تعطيل) (.*)(.lua)$") and DevSoFi(msg) then
 local name_t = {string.match(text, "^(تعطيل) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
-local file_bot = io.open("File_Bot/"..file,"r")
-if file_bot then
-io.close(file_bot)
+local Files_ICE = io.open("Files_ICE/"..file,"r")
+if Files_ICE then
+io.close(Files_ICE)
 t = " ❒∫ الملف » "..file.."\n ❒∫ تم تعطيل ملف \n"
 else
 t = " ❒∫ بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/ICELTEAM/Files_ICE/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/ICCETEAM/Files_ICE/main/Files_ICE/"..file)
 if res == 200 then
-os.execute("rm -fr File_Bot/"..file)
+os.execute("rm -fr Files_ICE/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('ICE.lua')  
 else
@@ -4096,16 +4096,16 @@ end
 if text and text:match("^(تفعيل) (.*)(.lua)$") and DevSoFi(msg) then
 local name_t = {string.match(text, "^(تفعيل) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
-local file_bot = io.open("File_Bot/"..file,"r")
-if file_bot then
-io.close(file_bot)
+local Files_ICE = io.open("Files_ICE/"..file,"r")
+if Files_ICE then
+io.close(Files_ICE)
 t = " ❒∫ بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = " ❒∫ الملف » "..file.."\n ❒∫ تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/ICELTEAM/Files_ICE/main/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/ICCETEAM/Files_ICE/main/Files_ICE/"..file)
 if res == 200 then
-local chek = io.open("File_Bot/"..file,'w+')
+local chek = io.open("Files_ICE/"..file,'w+')
 chek:write(json_file)
 chek:close()
 send(msg.chat_id_, msg.id_,t) 
@@ -4116,7 +4116,7 @@ end
 return false
 end
 if text == "مسح الملفات" and DevSoFi(msg) then
-os.execute("rm -fr File_Bot/*")
+os.execute("rm -fr Files_ICE/*")
 send(msg.chat_id_,msg.id_," ❒∫ تم مسح الملفات")
 return false
 end
